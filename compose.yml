@@ -1,0 +1,13 @@
+services:
+  database:
+    image: 'postgres:latest'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_DB: dev
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - source: src/main/resources/init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
+        type: bind
